@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Amira! 💖</title>
+
+<!-- Fonts: Poppins (body), Dancing Script (headings), Cairo (Arabic card) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============ THEME COLORS — change these to restyle everything ============ */
+:root {
+  --bg: #fff0f3;          /* page background (light pink) */
+  --pink: #ffb3c1;        /* soft pink */
+  --deep: #ff758f;        /* deep pink highlight */
+  --deep-dark: #e8506f;   /* slightly darker pink, used behind white text */
+  --text: #7a3550;        /* body text (dusty rose, readable on pink) */
+  --shadow: 0 12px 32px rgba(255, 117, 143, .25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 15% 0%, #ffe0e8 0, var(--bg) 45%, #ffe8ee 100%) fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+section { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 72px 20px; text-align: center; }
+.title { font-family: 'Dancing Script', cursive; font-size: clamp(2.2rem, 6vw, 3rem); color: var(--deep); }
+.sub { margin: 8px auto 0; max-width: 460px; font-weight: 300; line-height: 1.6; }
+
+/* ============ FLOATING BACKGROUND (emojis are created in JS) ============ */
+.floaters { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.floaters span { position: absolute; bottom: -60px; opacity: 0; animation: rise linear infinite; }
+@keyframes rise {
+  0%   { transform: translate(0, 0) rotate(0); opacity: 0; }
+  10%  { opacity: .75; }
+  90%  { opacity: .75; }
+  100% { transform: translate(var(--dx), -115vh) rotate(360deg); opacity: 0; }
+}
+
+/* ============ 1. HERO ============ */
+.hero { min-height: 82vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hero h1 {
+  font-family: 'Dancing Script', cursive; font-weight: 700;
+  font-size: clamp(3rem, 11vw, 6.5rem); line-height: 1.05; color: var(--deep);
+  text-shadow: 0 6px 24px rgba(255, 117, 143, .3);
+  animation: arrive 1.2s cubic-bezier(.2, .8, .2, 1) both; /* the one page-load moment */
+}
+.hero h1 .beat { display: inline-block; animation: beat 1.6s ease-in-out infinite; }
+.hero p { margin-top: 18px; font-size: clamp(1rem, 2.6vw, 1.25rem); font-weight: 300; max-width: 520px; line-height: 1.7; animation: arrive 1.2s .3s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes arrive { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes beat { 0%, 60%, 100% { transform: scale(1); } 15% { transform: scale(1.22); } 30% { transform: scale(1); } 45% { transform: scale(1.14); } }
+
+/* ============ 2. CAKE (pure CSS) ============ */
+.cake { position: relative; width: 260px; height: 270px; margin: 36px auto 0; cursor: pointer; transition: transform .3s; -webkit-tap-highlight-color: transparent; }
+.cake:hover { transform: translateY(-4px) scale(1.02); }
+.cake:focus-visible { outline: 3px dashed var(--deep); outline-offset: 12px; border-radius: 24px; }
+.plate { position: absolute; bottom: 0; left: -24px; right: -24px; height: 26px; border-radius: 50%; background: linear-gradient(#fff, #ffd9e0); box-shadow: 0 12px 22px rgba(255, 117, 143, .35); }
+.tier { position: absolute; left: 50%; transform: translateX(-50%); overflow: hidden; box-shadow: inset 0 -10px 0 rgba(122, 53, 80, .06); }
+.tier.bottom { bottom: 14px; width: 240px; height: 92px; border-radius: 18px 18px 22px 22px; background: linear-gradient(#ffb3c1, #ff9db0); }
+.tier.top    { bottom: 106px; width: 170px; height: 72px; border-radius: 16px 16px 6px 6px; background: linear-gradient(#ffc9d4, #ffb3c1); }
+.tier::after { content: ''; position: absolute; left: 0; right: 0; bottom: 10px; height: 10px; background: radial-gradient(circle, #fff 4px, transparent 5px) 0 0 / 22px 10px repeat-x; }
+.icing { position: absolute; top: 0; left: 0; right: 0; height: 14px; background: #fff0f3; }
+.icing::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 20px; background: radial-gradient(circle at 14px 0, #fff0f3 12px, transparent 13px) 0 0 / 28px 20px repeat-x; }
+.candle { position: absolute; bottom: 178px; left: 50%; width: 12px; height: 46px; transform: translateX(-50%); border-radius: 4px 4px 2px 2px; background: repeating-linear-gradient(135deg, #fff 0 6px, var(--deep) 6px 12px); }
+.candle::before { content: ''; position: absolute; top: -6px; left: 50%; width: 2px; height: 7px; margin-left: -1px; background: #5a3a44; } /* wick */
+.flame {
+  position: absolute; bottom: calc(100% + 4px); left: 50%; width: 16px; height: 28px; margin-left: -8px;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: radial-gradient(ellipse at 50% 75%, #fffbe0 0, #ffd166 45%, #ff9f43 100%);
+  box-shadow: 0 0 18px 6px rgba(255, 190, 80, .55);
+  transform-origin: 50% 100%; animation: flicker .6s ease-in-out infinite alternate;
+  transition: opacity .35s, transform .35s;
+}
+@keyframes flicker { from { transform: scale(1, 1) rotate(-3deg); } to { transform: scale(.92, 1.1) rotate(3deg); } }
+.smoke { position: absolute; bottom: 100%; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: rgba(150, 120, 130, .4); filter: blur(4px); opacity: 0; }
+.cake.out .flame { opacity: 0; transform: scale(.2); animation: none; }
+.cake.out .smoke { animation: smoke 2.2s ease-out; }
+@keyframes smoke { 0% { opacity: .7; transform: translateY(0) scale(.6); } 100% { opacity: 0; transform: translate(10px, -64px) scale(3); } }
+.hint { display: inline-block; margin-top: 26px; padding: 8px 20px; border-radius: 999px; background: rgba(255, 255, 255, .7); box-shadow: var(--shadow); font-size: .95rem; }
+
+/* ============ 3. ARABIC MESSAGE CARD ============ */
+.card {
+  position: relative; max-width: 640px; margin: 44px auto 0; padding: 48px 32px 36px;
+  background: rgba(255, 255, 255, .78); border: 2px solid #ffd3dc; border-radius: 32px 32px 32px 8px; box-shadow: var(--shadow);
+}
+.card::before { content: '🎀'; position: absolute; top: -26px; left: 50%; transform: translateX(-50%); font-size: 2.6rem; }
+.card-ar { direction: rtl; font-family: 'Cairo', sans-serif; font-size: 1.15rem; line-height: 2.1; }
+.card-ar h3 { font-size: 1.7rem; color: var(--deep); margin-bottom: 10px; }
+.card-ar p { margin-bottom: 12px; }
+.card-ar .sign { margin-top: 18px; color: var(--deep-dark); font-weight: 600; }
+
+/* ============ 4. PHOTO GALLERY ============ */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px; margin-top: 36px; }
+.photo { padding: 12px 12px 16px; background: #fff; border-radius: 20px; box-shadow: var(--shadow); transition: transform .35s, box-shadow .35s; }
+.photo:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 0 18px 40px rgba(255, 117, 143, .35); }
+.frame { aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #ffd9e0, #ffb3c1); }
+.frame img, .ph { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.photo:hover .frame img, .photo:hover .ph { transform: scale(1.12); } /* smooth hover zoom */
+.ph { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-size: 2.8rem; color: #fff; }
+.ph small { font-size: .85rem; font-weight: 500; }
+.photo figcaption { margin-top: 12px; font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--deep); }
+
+/* ============ 5. CONFETTI BUTTON ============ */
+.btn {
+  margin-top: 28px; padding: 16px 40px; border: 0; border-radius: 999px; cursor: pointer;
+  font: 600 1.2rem 'Poppins', sans-serif; color: #fff;
+  background: linear-gradient(135deg, var(--deep-dark), var(--deep)); box-shadow: 0 10px 24px rgba(255, 117, 143, .5);
+  transition: transform .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 30px rgba(255, 117, 143, .55); }
+.btn:active { transform: scale(.96); }
+.btn:focus-visible { outline: 3px dashed var(--deep-dark); outline-offset: 5px; }
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+footer { position: relative; z-index: 1; padding: 20px 20px 48px; text-align: center; font-size: .9rem; opacity: .8; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <h1><span id="titleText"></span> <span class="beat">💖</span></h1>
+  <p id="subtitle"></p>
+</section>
+
+<!-- 2. CAKE -->
+<section>
+  <h2 class="title" id="cakeTitle"></h2>
+  <p class="sub" id="cakeSub"></p>
+  <div class="cake" id="cake" role="button" tabindex="0" aria-label="Blow out the candle">
+    <div class="candle"><div class="flame" id="flame"></div><div class="smoke"></div></div>
+    <div class="tier top"><div class="icing"></div></div>
+    <div class="tier bottom"><div class="icing"></div></div>
+    <div class="plate"></div>
+  </div>
+  <span class="hint" id="hint" aria-live="polite"></span>
+</section>
+
+<!-- 3. ARABIC CARD (text is filled from CONFIG below) -->
+<section>
+  <h2 class="title" id="cardHeading"></h2>
+  <div class="card">
+    <div class="card-ar" lang="ar" dir="rtl">
+      <h3 id="cardTitle"></h3>
+      <div id="cardBody"></div>
+      <p class="sign" id="cardSign"></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PHOTO GALLERY (cards are built from CONFIG.photos) -->
+<section>
+  <h2 class="title" id="galleryTitle"></h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- 5. CONFETTI BUTTON -->
+<section>
+  <h2 class="title" id="partyTitle"></h2>
+  <button class="btn" id="partyBtn" type="button"></button>
+</section>
+
+<footer id="footer"></footer>
+
+<script>
+/* =====================================================================
+   CONFIG — edit the text and photo links here. Everything else is code.
+   ===================================================================== */
+const CONFIG = {
+  name: "Amira",
+
+  // Hero
+  title: "Happy Birthday Amira!",   // a beating 💖 is added after it automatically
+  subtitle: "Wishing you a day as sweet, bright, and beautiful as you are ✨",
+
+  // Cake section
+  cakeTitle: "Make a Wish",
+  cakeSub: "Close your eyes, think of something wonderful, then blow out the candle.",
+  hintBefore: "Tap the cake to blow out the candle 🕯️",
+  hintAfter: "Wish made! 🌟 Tap the cake again to relight the candle",
+
+  // Arabic card — one string per paragraph (HTML like <b> is allowed)
+  cardHeading: "A Note for You",
+  card: {
+    title: "إلى أميرة الغالية 🎀",
+    paragraphs: [
+      "كل عام وأنتِ بألف خير يا أميرة! 🎂",
+      "في يوم ميلادك أتمنى لكِ عامًا مليئًا بالفرح والسعادة، وأن يحقق الله لكِ كل ما تتمنينه وتحلمين به.",
+      "أنتِ إنسانة رائعة، بقلبك الطيب وابتسامتك التي تُنير الأيام. أدعو الله أن يمنحكِ الصحة والنجاح والسكينة، وأن تبقي دائمًا سببًا للبهجة في حياة من حولكِ.",
+      "عيد ميلاد سعيد، ودمتِ مبتسمة دائمًا 🌸"
+    ],
+    sign: "مع خالص الحب 💖"
+  },
+
+  // Gallery — put an image link or file path in `src` (e.g. "photos/amira1.jpg"
+  // or "https://..."). Leave "" to show the pink placeholder.
+  galleryTitle: "Sweet Memories",
+  photos: [
+    { src: "", caption: "Our favorite day" },
+    { src: "", caption: "That smile" },
+    { src: "", caption: "Forever grateful" }
+  ],
+
+  // Confetti section
+  partyTitle: "Let’s Celebrate!",
+  partyButton: "🎉 Throw confetti",
+
+  // Pastel confetti colors
+  confettiColors: ["#ffb3c1", "#ff758f", "#ff8fa3", "#ffc8dd", "#cdb4db", "#a2d2ff", "#ffe29a", "#b8e0d2"],
+
+  // Floating background emojis
+  floaters: ["🌸", "✨", "🎀", "💖", "⭐", "🌷", "💕"]
+};
+
+/* ---------------------------- Fill in the text ---------------------------- */
+const $ = s => document.querySelector(s);
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+document.title = CONFIG.title + " 💖";
+$('#titleText').textContent = CONFIG.title;
+$('#subtitle').textContent = CONFIG.subtitle;
+$('#cakeTitle').textContent = CONFIG.cakeTitle;
+$('#cakeSub').textContent = CONFIG.cakeSub;
+$('#hint').textContent = CONFIG.hintBefore;
+$('#cardHeading').textContent = CONFIG.cardHeading;
+$('#cardTitle').textContent = CONFIG.card.title;
+$('#cardBody').innerHTML = CONFIG.card.paragraphs.map(p => `<p>${p}</p>`).join('');
+$('#cardSign').textContent = CONFIG.card.sign;
+$('#galleryTitle').textContent = CONFIG.galleryTitle;
+$('#partyTitle').textContent = CONFIG.partyTitle;
+$('#partyBtn').textContent = CONFIG.partyButton;
+$('#footer').textContent = `Made with 💖 for ${CONFIG.name}`;
+
+/* ------------------------- Floating background ------------------------- */
+for (let i = 0; i < 24; i++) {
+  const s = document.createElement('span');
+  s.textContent = CONFIG.floaters[i % CONFIG.floaters.length];
+  s.style.cssText = `left:${rand(0, 100)}%;font-size:${rand(14, 34)}px;` +
+    `animation-duration:${rand(14, 28)}s;animation-delay:${-rand(0, 28)}s;--dx:${rand(-60, 60)}px`;
+  $('#floaters').append(s);
+}
+
+/* ---------------------------- Photo gallery ---------------------------- */
+CONFIG.photos.forEach(p => {
+  const fig = document.createElement('figure');
+  fig.className = 'photo';
+  const frame = document.createElement('div');
+  frame.className = 'frame';
+  const placeholder = () => { frame.innerHTML = '<div class="ph">📷<small>Add your photo here</small></div>'; };
+  if (p.src) {
+    const img = new Image();
+    img.src = p.src; img.alt = p.caption; img.loading = 'lazy';
+    img.onerror = placeholder;            // broken link -> show placeholder
+    frame.append(img);
+  } else placeholder();
+  const cap = document.createElement('figcaption');
+  cap.textContent = p.caption;
+  fig.append(frame, cap);
+  $('#grid').append(fig);
+});
+
+/* ------------------------------ Confetti ------------------------------ */
+const cv = $('#confetti'), ctx = cv.getContext('2d');
+let W, H, pieces = [], raf = null;
+
+function resize() {
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+addEventListener('resize', resize); resize();
+
+function addPiece(x, y, vx, vy) {
+  pieces.push({
+    x, y, vx, vy, size: rand(7, 13), color: pick(CONFIG.confettiColors),
+    shape: pick(['rect', 'circle', 'heart']),
+    rot: rand(0, 6.28), vr: rand(-.2, .2), tilt: rand(0, 6.28), tv: rand(.05, .15)
+  });
+}
+function drawPiece(p) {
+  const s = p.size;
+  ctx.save();
+  ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(1, Math.cos(p.tilt)); // tilt = fluttering effect
+  ctx.fillStyle = p.color; ctx.beginPath();
+  if (p.shape === 'rect') ctx.rect(-s / 2, -s / 3, s, s * .66);
+  else if (p.shape === 'circle') ctx.arc(0, 0, s / 2.2, 0, 6.283);
+  else {                                                     // little heart
+    ctx.moveTo(0, s * .4);
+    ctx.bezierCurveTo(-s * .8, -s * .1, -s * .45, -s * .7, 0, -s * .3);
+    ctx.bezierCurveTo(s * .45, -s * .7, s * .8, -s * .1, 0, s * .4);
+  }
+  ctx.fill(); ctx.restore();
+}
+function tick() {
+  ctx.clearRect(0, 0, W, H);
+  pieces = pieces.filter(p => p.y < H + 30);
+  for (const p of pieces) {
+    p.vy += .2; p.vx *= .97; p.vy *= .97;                    // gravity + air drag
+    p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.tilt += p.tv;
+    drawPiece(p);
+  }
+  raf = pieces.length ? requestAnimationFrame(tick) : null;
+}
+const start = () => { if (!raf) raf = requestAnimationFrame(tick); };
+
+// Round burst from a point (used by the cake)
+function burst(x, y, n = 120) {
+  for (let i = 0; i < n; i++) { const a = rand(0, 6.283), s = rand(4, 15); addPiece(x, y, Math.cos(a) * s, Math.sin(a) * s - 6); }
+  start();
+}
+// Pastel pieces falling from the top of the screen
+function rain(n = 110) {
+  for (let i = 0; i < n; i++) addPiece(rand(0, W), rand(-H * .4, -10), rand(-1.5, 1.5), rand(2, 6));
+  start();
+}
+// Two cannons shooting in from the bottom corners
+function cannons(n = 70) {
+  for (let i = 0; i < n; i++) { addPiece(0, H * .85, rand(6, 17), rand(-22, -9)); addPiece(W, H * .85, rand(-17, -6), rand(-22, -9)); }
+  start();
+}
+
+/* ------------------------------ Cake click ------------------------------ */
+const cake = $('#cake');
+function toggleCandle() {
+  if (!cake.classList.contains('out')) {
+    const r = $('#flame').getBoundingClientRect();           // measure before it shrinks
+    cake.classList.add('out');
+    $('#hint').textContent = CONFIG.hintAfter;
+    burst(r.left + r.width / 2, r.top, 140);                 // confetti fires automatically
+    rain(60);
+  } else {
+    cake.classList.remove('out');                            // relight
+    $('#hint').textContent = CONFIG.hintBefore;
+  }
+}
+cake.addEventListener('click', toggleCandle);
+cake.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCandle(); }
+});
+
+/* --------------------------- Celebrate button --------------------------- */
+$('#partyBtn').addEventListener('click', () => { cannons(); rain(); });
+</script>
+</body>
+</html>
